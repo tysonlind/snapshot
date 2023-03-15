@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 html {
@@ -17,4 +19,45 @@ body {
 
 .App {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+ul {
+  list-style-type: none;
+}
+
+#photo-board {
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  grid-auto-rows: minmax(80px, 1fr);
+  grid-gap: 0.3rem;
+}
+
+.photo-square {
+  aspect-ratio: 1;
+  background: black;
+  padding: 0.2rem;
+  grid-area: 1 / 1 / 2 / 2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#photo-board > .photo-square::before {
+  content: "";
+  padding-bottom: 100%;
+  display: block;
+}
+
+@media (min-width: 500px) {
+  #photo-board {
+    width: 60%;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-auto-rows: minmax(100px, 1fr);
+    grid-gap: 0.5rem;
+  }
 }

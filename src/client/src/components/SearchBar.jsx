@@ -1,0 +1,15 @@
+//form containing a search bar and a submit button
+//when the input is submitted by the search (submit) button, the fetch request needs to occur again with the given input, and the photo board needs to re-render
+
+function SearchBar({ handleSubmit }) {
+    return (
+        <>
+        <form id="myForm" method="get">
+            <input type="search" name="query" placeholder="Search for photos..." onSubmit={handleSubmit}></input>
+            <button type="submit">Search</button>
+        </form>
+        </>
+    )
+}
+
+export default SearchBar;
