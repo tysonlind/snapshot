@@ -10,7 +10,7 @@ router.get("/", (req, res, next) => {
         query = "nature";
     }
 
-    fetch(`https://api.unsplash.com/search/photos?query=${query}&per_page=24&client_id=${process.env.API_KEY}`)
+    fetch(`https://api.unsplash.com/search/photos?query=${query}&page=1&per_page=16&client_id=${process.env.API_KEY}`)
     .then((res) => res.json())
     .then((data) => {
         res.send(data.results);

@@ -61,3 +61,11 @@ ul {
     grid-gap: 0.5rem;
   }
 }
+
+.hidden {
+  display: none;
+}
+
+#warning-msg {
+  color: red;
+}

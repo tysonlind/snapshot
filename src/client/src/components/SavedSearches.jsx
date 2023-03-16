@@ -1,14 +1,14 @@
 import SavedSearchBtn from "./SavedSearchBtn";
 
-function SavedSearches({ savedSearchesList, handleClick }) {
+function SavedSearches({ savedSearchesList, handleNewSave, handleSavedSearch }) {
   
     return (
       <>
-      {/* this needs to capture the current value in the search bar and save it as a saved search */}
-      <button></button>
+      <button id="newSavedSearchBtn" onClick={handleNewSave}>Save this Search</button>
+      <p id="warning-msg" className="hidden"></p>
       <ul id="saved-searches">
           {savedSearchesList.map((item, idx) => {
-          return <li key={item + idx}><SavedSearchBtn value={item} onClick={handleClick}/></li>
+          return <li key={item + idx}><SavedSearchBtn value={item} handleClick={handleSavedSearch}/></li>
           })}
       </ul>
       </>
