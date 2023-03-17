@@ -1,4 +1,5 @@
 import Photo from "./Photo";
+import { Link } from "react-router-dom";
 
 function PhotoBoard({ list }) {
   
@@ -6,7 +7,7 @@ function PhotoBoard({ list }) {
     <>
     <ul id="photo-board">
         {list.map((item) => {
-        return <li key={item.id}><Photo src={item.urls.full} alt={item.alt_description} /></li>
+        return <li key={item.id}><Link to={`/:${item.id}`}><Photo src={item.urls.full} alt={item.alt_description} /></Link></li>
         })}
     </ul>
     </>
