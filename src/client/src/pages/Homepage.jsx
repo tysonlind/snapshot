@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import PhotoBoard from "./components/PhotoBoard";
-import SearchBar from "./components/SearchBar";
-import SavedSearches from "./components/SavedSearches";
+import PhotoBoard from "../components/PhotoBoard";
+import SearchBar from "../components/SearchBar";
+import SavedSearches from "../components/SavedSearches";
 
 function Homepage() {
+  let [isLoaded, setHasLoaded] = useState(false);
   let [list, setList] = useState([]);
   let [query, setQuery] = useState("");
   let [savedSearches, setSavedSearches] = useState([]);
@@ -51,6 +52,7 @@ function Homepage() {
       .then((res) => res.json())
       .then((data) => {
         setList(data);
+        setHasLoaded(true);
       })
       .catch((err) => {
         console.error(err);
