@@ -30,12 +30,12 @@ const Btn = ({ type, info, handleNewSave, value, handleSavedSearch }) => {
     } else if (type == "saveSearch") {
         return (
             <>
-            <button className="btn" onClick={handleNewSave}>Save This Search</button>
+            <button className="btn saveSearchBtn" onClick={handleNewSave}><i className="fa-regular fa-bookmark"></i></button>
             </>
         )
     } else if (type == "savedSearch") {
         return (
-            <button onClick={handleSavedSearch} value={value}>{value}</button>
+            <button className="btn savedSearchBtn" onClick={handleSavedSearch} value={value}>{value}</button>
         )
     }
 }

@@ -64,12 +64,15 @@ function Homepage() {
   if (isLoaded) {
    return (
     <div className="App">
-        <h1>SnapShot</h1>
-        <hr />
-          <SearchBar handleSearch={setSearchTerms}/>
-          <Btn type="saveSearch" handleNewSave={createSavedSearch} />
-          <SavedSearches savedSearchesList={savedSearches} handleSavedSearch={setQueryFromSavedSearch} />
-          <PhotoBoard list={list}/>
+        <div id="homepage">
+            <h1>SnapShot</h1>
+            <div className="searchbar-wrapper">
+            <SearchBar handleSearch={setSearchTerms}/>
+            <Btn type="saveSearch" handleNewSave={createSavedSearch} />
+            </div>
+            <SavedSearches savedSearchesList={savedSearches} handleSavedSearch={setQueryFromSavedSearch} />
+            <PhotoBoard list={list}/>
+        </div>
     </div>
   );   
   } else {

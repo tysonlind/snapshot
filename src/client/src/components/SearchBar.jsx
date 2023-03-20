@@ -6,8 +6,8 @@ function SearchBar({ handleSearch }) {
     return (
         <>
         <form onSubmit={handleSearch}>
-            <input id="searchBar" type="search" name="query" placeholder="Search for photos..."></input>
-            <button className="btn" type="submit">Search</button>
+            <button id="searchBtn" className="btn" type="submit"><i className="fa-solid fa-magnifying-glass"></i></button>
+            <input id="searchBar" type="search" autoComplete="off" name="query" placeholder="Search for photos..."></input>
         </form>
         </>
     )
