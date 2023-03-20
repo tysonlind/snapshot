@@ -7,7 +7,7 @@ function SearchBar({ handleSearch }) {
         <>
         <form onSubmit={handleSearch}>
             <input id="searchBar" type="search" name="query" placeholder="Search for photos..."></input>
-            <button type="submit">Search</button>
+            <button className="btn" type="submit">Search</button>
         </form>
         </>
     )

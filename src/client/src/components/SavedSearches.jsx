@@ -1,14 +1,13 @@
-import SavedSearchBtn from "./SavedSearchBtn";
+import Btn from "./Btn";
 
-function SavedSearches({ savedSearchesList, handleNewSave, handleSavedSearch }) {
+function SavedSearches({ savedSearchesList, handleSavedSearch }) {
   
     return (
       <>
-      <button id="newSavedSearchBtn" onClick={handleNewSave}>Save this Search</button>
       <p id="warning-msg" className="hidden"></p>
       <ul id="saved-searches">
           {savedSearchesList.map((item, idx) => {
-          return <li key={item + idx}><SavedSearchBtn value={item} handleClick={handleSavedSearch}/></li>
+          return <li key={item + idx}><Btn type="savedSearch" value={item} handleSavedSearch={handleSavedSearch}/></li>
           })}
       </ul>
       </>

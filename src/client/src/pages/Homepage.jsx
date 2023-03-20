@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import PhotoBoard from "../components/PhotoBoard";
 import SearchBar from "../components/SearchBar";
 import SavedSearches from "../components/SavedSearches";
+import Btn from "../components/Btn";
 
 function Homepage() {
-  let [isLoaded, setHasLoaded] = useState(false);
+  let [isLoaded, setIsLoaded] = useState(false);
   let [list, setList] = useState([]);
   let [query, setQuery] = useState("");
   let [savedSearches, setSavedSearches] = useState([]);
@@ -45,6 +46,7 @@ function Homepage() {
   }
 
   useEffect(() => {
+
     fetch("http://localhost:5000" + "?" + new URLSearchParams({
       query: query
     }))
@@ -52,22 +54,28 @@ function Homepage() {
       .then((res) => res.json())
       .then((data) => {
         setList(data);
-        setHasLoaded(true);
+        setIsLoaded(true);
       })
       .catch((err) => {
         console.error(err);
       });
   }, [query]);
 
-  return (
+  if (isLoaded) {
+   return (
     <div className="App">
         <h1>SnapShot</h1>
         <hr />
           <SearchBar handleSearch={setSearchTerms}/>
-          <SavedSearches savedSearchesList={savedSearches} handleSavedSearch={setQueryFromSavedSearch} handleNewSave={createSavedSearch} />
+          <Btn type="saveSearch" handleNewSave={createSavedSearch} />
+          <SavedSearches savedSearchesList={savedSearches} handleSavedSearch={setQueryFromSavedSearch} />
           <PhotoBoard list={list}/>
     </div>
-  );
+  );   
+  } else {
+    return <p>Loading...</p>;
+  }
+
 }
 
 export default Homepage;

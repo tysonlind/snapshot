@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
-const Btn = ({ type, info }) => {
+const Btn = ({ type, info, handleNewSave, value, handleSavedSearch }) => {
     const navigate = useNavigate();
     
     if (type == "back") {
@@ -8,7 +8,7 @@ const Btn = ({ type, info }) => {
         navigate(-1);
     }
         return (
-            <button onClick={goBack}>Back</button>
+            <button className="btn" onClick={goBack}>Back</button>
             )
 
     } else if (type == "download") {
@@ -25,7 +25,17 @@ const Btn = ({ type, info }) => {
             document.body.removeChild(link)
           }
         return (
-            <button onClick={() => downloadImage(info.src)}>Download Image</button>
+            <button className="btn" onClick={() => downloadImage(info.src)}>Download Image</button>
+        )
+    } else if (type == "saveSearch") {
+        return (
+            <>
+            <button className="btn" onClick={handleNewSave}>Save This Search</button>
+            </>
+        )
+    } else if (type == "savedSearch") {
+        return (
+            <button onClick={handleSavedSearch} value={value}>{value}</button>
         )
     }
 }
