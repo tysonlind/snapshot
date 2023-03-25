@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-const Btn = ({ type, info, handleNewSave, value, handleSavedSearch }) => {
+const Btn = ({ type, info, handleNewSave, value, handleSavedSearch, removeSavedSearch }) => {
+
+    const [isHovered, setIsHovered] = useState(false);
     const navigate = useNavigate();
     
     if (type == "back") {
@@ -35,7 +38,10 @@ const Btn = ({ type, info, handleNewSave, value, handleSavedSearch }) => {
         )
     } else if (type == "savedSearch") {
         return (
-            <button className="btn savedSearchBtn" onClick={handleSavedSearch} value={value}>{value}</button>
+            <div className="savedSearchBtn-container" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+                <i className={`fa-regular fa-circle-xmark fa-2xs remove-btn ${isHovered ? "" : "hidden"}`} onClick={removeSavedSearch} data-value={value}></i>
+                <button className="btn savedSearchBtn" onClick={handleSavedSearch} value={value}>{value}</button>
+            </div>
         )
     }
 }

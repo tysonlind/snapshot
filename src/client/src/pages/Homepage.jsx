@@ -25,26 +25,39 @@ function Homepage() {
 
   const createSavedSearch = () => {
     const warningMsg = document.querySelector("#warning-msg");
-    if (savedSearches.length >= 5) {
-      // show 3-second message that saved searches limit has been reached
-      warningMsg.textContent = "Limit of saved searches reached!";
-      warningMsg.classList.remove("hidden");
-      setTimeout(() => {
-        warningMsg.classList.add("hidden");
-      }, 3000)
-      // another warning message if saved search already exists
-    } else if (savedSearches.findIndex((searchTerm) => searchTerm.toLowerCase() === searchBar.value.toLowerCase()) !== -1) {
-      warningMsg.textContent = "Search already saved!";
-      warningMsg.classList.remove("hidden");
-      setTimeout(() => {
-        warningMsg.classList.add("hidden");
-      }, 3000)
-    }
-    else {
-      setSavedSearches([...savedSearches, searchBar.value]);
+
+    if (searchBar.value) {
+        if (savedSearches.length >= 5) {
+        // show 3-second message that saved searches limit has been reached
+        warningMsg.textContent = "Limit of saved searches reached!";
+        warningMsg.classList.remove("hidden");
+        setTimeout(() => {
+            warningMsg.classList.add("hidden");
+        }, 3000)
+        // another warning message if saved search already exists
+        } else if (savedSearches.findIndex((searchTerm) => searchTerm.toLowerCase() === searchBar.value.toLowerCase()) !== -1) {
+        warningMsg.textContent = "Search already saved!";
+        warningMsg.classList.remove("hidden");
+        setTimeout(() => {
+            warningMsg.classList.add("hidden");
+        }, 3000)
+        }
+        else {
+        setSavedSearches([...savedSearches, searchBar.value]);
+        }  
     }
   }
 
+    const removeSavedSearch = (e) => {
+
+        let updatedSavedSearches = [];
+        for (let search of savedSearches) {
+            if (search !== e.target.getAttribute("data-value")) {
+                updatedSavedSearches.push(search);
+            }
+        }
+        setSavedSearches([...updatedSavedSearches]);
+    }
   useEffect(() => {
 
     fetch("http://localhost:5000" + "?" + new URLSearchParams({
@@ -70,7 +83,7 @@ function Homepage() {
             <SearchBar handleSearch={setSearchTerms}/>
             <Btn type="saveSearch" handleNewSave={createSavedSearch} />
             </div>
-            <SavedSearches savedSearchesList={savedSearches} handleSavedSearch={setQueryFromSavedSearch} />
+            <SavedSearches savedSearchesList={savedSearches} handleSavedSearch={setQueryFromSavedSearch} removeSavedSearch={removeSavedSearch}/>
             <PhotoBoard list={list}/>
         </div>
     </div>

@@ -1,15 +1,15 @@
 import Btn from "./Btn";
 
-function SavedSearches({ savedSearchesList, handleSavedSearch }) {
+function SavedSearches({ savedSearchesList, handleSavedSearch, removeSavedSearch }) {
   
     return (
       <>
-      <p id="warning-msg" className="hidden"></p>
       <ul id="saved-searches-area">
           {savedSearchesList.map((item, idx) => {
-          return <li key={item + idx}><Btn type="savedSearch" value={item} handleSavedSearch={handleSavedSearch}/></li>
+          return <li key={item + idx}><Btn type="savedSearch" value={item} handleSavedSearch={handleSavedSearch} removeSavedSearch={removeSavedSearch}/></li>
           })}
       </ul>
+      <p id="warning-msg" className="hidden"></p>
       </>
     );
   }
