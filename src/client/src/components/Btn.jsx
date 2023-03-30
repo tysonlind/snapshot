@@ -11,24 +11,24 @@ const Btn = ({ type, info, handleNewSave, value, handleSavedSearch, removeSavedS
         navigate(-1);
     }
         return (
-            <button className="btn" onClick={goBack}>Back</button>
+            <button className="btn" onClick={goBack}><i className="fa-solid fa-arrow-left"></i></button>
             )
 
     } else if (type == "download") {
         async function downloadImage (src) {
-            const image = await fetch(src)
-            const imageBlog = await image.blob()
-            const imageURL = URL.createObjectURL(imageBlog)
+            const image = await fetch(src);
+            const imageBlog = await image.blob();
+            const imageURL = URL.createObjectURL(imageBlog);
           
-            const link = document.createElement('a')
-            link.href = imageURL
+            const link = document.createElement('a');
+            link.href = imageURL;
             link.download = info.alt;
-            document.body.appendChild(link)
-            link.click()
-            document.body.removeChild(link)
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
           }
         return (
-            <button className="btn" onClick={() => downloadImage(info.src)}>Download Image</button>
+            <button className="btn" onClick={() => downloadImage(info.src)}><i className="fa-solid fa-download"></i></button>
         )
     } else if (type == "saveSearch") {
         return (

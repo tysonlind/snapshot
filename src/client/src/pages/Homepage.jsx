@@ -78,7 +78,10 @@ function Homepage() {
    return (
     <div className="App">
         <div id="homepage">
-            <h1>SnapShot</h1>
+            <div id="forkme">
+                <a href="https://github.com/mbasagoitia/snapshot"><img decoding="async" loading="lazy" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_white_ffffff.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1" /></a>
+            </div>
+            <h1 id="title">SnapShot</h1>
             <div className="searchbar-wrapper">
             <SearchBar handleSearch={setSearchTerms}/>
             <Btn type="saveSearch" handleNewSave={createSavedSearch} />
