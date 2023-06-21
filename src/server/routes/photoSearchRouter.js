@@ -7,6 +7,7 @@ const router = express.Router();
 router.get("/", (req, res, next) => {
     let { query } = req.query;
     if (!query) {
+        // add in functionality for a random query from an array of values so that it's different every time it loads
         query = "nature";
     }
 

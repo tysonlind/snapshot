@@ -10,7 +10,9 @@ import Btn from "../components/Btn";
 function Homepage() {
   let [isLoaded, setIsLoaded] = useState(false);
   let [list, setList] = useState([]);
+  // only if there is a current query
   let [query, setQuery] = useState(JSON.parse(localStorage.getItem("query")));
+  // only if there are already saved searches
   let [savedSearches, setSavedSearches] = useState(JSON.parse([localStorage.getItem("savedSearches")]));
 
   
@@ -19,14 +21,17 @@ function Homepage() {
     localStorage.setItem('savedSearches', JSON.stringify(savedSearches));
   }, [query, savedSearches]);
   
-  useEffect(() => {
-    const currentQuery = JSON.parse(localStorage.getItem('query'));
-    if (currentQuery) {
-        setQuery(currentQuery);
-    }
-    const currentSavedSearches = JSON.parse(localStorage.getItem('savedSearches'));
-        setSavedSearches(currentSavedSearches);
-  }, []);
+  
+  // useEffect(() => {
+  //   const currentQuery = JSON.parse(localStorage.getItem('query'));
+  //   if (currentQuery) {
+  //       setQuery(currentQuery);
+  //   } else {
+  //         const currentSavedSearches = JSON.parse(localStorage.getItem('savedSearches'));
+  //       setSavedSearches(currentSavedSearches);
+  //   }
+
+  // }, []);
   
   const searchBar = document.querySelector("#searchBar");
 
