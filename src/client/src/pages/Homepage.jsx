@@ -10,34 +10,31 @@ import Btn from "../components/Btn";
 function Homepage() {
   let [isLoaded, setIsLoaded] = useState(false);
   let [list, setList] = useState([]);
-  // only if there is a current query
-  let [query, setQuery] = useState(JSON.parse(localStorage.getItem("query")));
-  // only if there are already saved searches
-  let [savedSearches, setSavedSearches] = useState(JSON.parse([localStorage.getItem("savedSearches")]));
-
+  let [query, setQuery] = useState(localStorage.getItem("query") || null);
+  let [savedSearches, setSavedSearches] = useState(JSON.parse(localStorage.getItem("savedSearches")) || []);
   
    useEffect(() => {
-    localStorage.setItem('query', JSON.stringify(query));
+    localStorage.setItem('query', query);
     localStorage.setItem('savedSearches', JSON.stringify(savedSearches));
   }, [query, savedSearches]);
   
-  
-  // useEffect(() => {
-  //   const currentQuery = JSON.parse(localStorage.getItem('query'));
-  //   if (currentQuery) {
-  //       setQuery(currentQuery);
-  //   } else {
-  //         const currentSavedSearches = JSON.parse(localStorage.getItem('savedSearches'));
-  //       setSavedSearches(currentSavedSearches);
-  //   }
-
-  // }, []);
+  useEffect(() => {
+    const currentQuery = localStorage.getItem('query');
+    if (currentQuery) {
+        setQuery(currentQuery);
+    } else {
+        const currentSavedSearches = localStorage.getItem('savedSearches');
+        setSavedSearches(currentSavedSearches);
+    }
+  }, []);
   
   const searchBar = document.querySelector("#searchBar");
 
   const setSearchTerms = (e) => {
     e.preventDefault();
-    setQuery(searchBar.value);
+    if (searchBar.value) {
+        setQuery(searchBar.value);  
+    }
   }
 
   const setQueryFromSavedSearch = (e) => {
@@ -85,7 +82,7 @@ function Homepage() {
     fetch("http://localhost:5000" + "?" + new URLSearchParams({
       query: query
     }))
-
+//somewhere in here check if the backend returns anything and send message if not
       .then((res) => res.json())
       .then((data) => {
         setList(data);
