@@ -4,13 +4,14 @@ import SearchBar from "../components/SearchBar";
 import SavedSearches from "../components/SavedSearches";
 import Btn from "../components/Btn";
 
-//add functionality for invalid or blank searches
-//clean up code
+// controlled input with searchbar and query?
 
 function Homepage() {
   let [isLoaded, setIsLoaded] = useState(false);
   let [list, setList] = useState([]);
-  let [query, setQuery] = useState(localStorage.getItem("query") || null);
+  let [isInvalidSearch, setIsInvalidSearch] = useState(false);
+  //choose random query to start with
+  let [query, setQuery] = useState(localStorage.getItem("query") || "nature");
   let [savedSearches, setSavedSearches] = useState(JSON.parse(localStorage.getItem("savedSearches")) || []);
   
    useEffect(() => {
@@ -29,7 +30,8 @@ function Homepage() {
   }, []);
   
   const searchBar = document.querySelector("#searchBar");
-
+  const warningMsg = document.querySelector("#warning-msg");
+  
   const setSearchTerms = (e) => {
     e.preventDefault();
     if (searchBar.value) {
@@ -44,9 +46,8 @@ function Homepage() {
   }
 
   const createSavedSearch = () => {
-    const warningMsg = document.querySelector("#warning-msg");
 
-    if (searchBar.value) {
+    if (!isInvalidSearch) {
         if (savedSearches.length >= 5) {
         // show 3-second message that saved searches limit has been reached
         warningMsg.textContent = "Limit of saved searches reached!";
@@ -55,15 +56,14 @@ function Homepage() {
             warningMsg.classList.add("hidden");
         }, 3000)
         // another warning message if saved search already exists
-        } else if (savedSearches.findIndex((searchTerm) => searchTerm.toLowerCase() === searchBar.value.toLowerCase()) !== -1) {
+        } else if (savedSearches.findIndex((searchTerm) => searchTerm.toLowerCase() === query.toLowerCase()) !== -1) {
         warningMsg.textContent = "Search already saved!";
         warningMsg.classList.remove("hidden");
         setTimeout(() => {
             warningMsg.classList.add("hidden");
         }, 3000)
-        }
-        else {
-        setSavedSearches([...savedSearches, searchBar.value]);
+        } else {
+        setSavedSearches([...savedSearches, query]);
         }  
     }
   }
@@ -82,10 +82,14 @@ function Homepage() {
     fetch("http://localhost:5000" + "?" + new URLSearchParams({
       query: query
     }))
-//somewhere in here check if the backend returns anything and send message if not
       .then((res) => res.json())
       .then((data) => {
-        setList(data);
+        if (data.length > 0) {
+          setIsInvalidSearch(false);
+          setList(data);
+        } else {
+          setIsInvalidSearch(true);
+        }
         setIsLoaded(true);
       })
       .catch((err) => {
@@ -106,7 +110,7 @@ function Homepage() {
             <Btn type="saveSearch" handleNewSave={createSavedSearch} />
             </div>
             <SavedSearches savedSearchesList={savedSearches} handleSavedSearch={setQueryFromSavedSearch} removeSavedSearch={removeSavedSearch}/>
-            <PhotoBoard list={list}/>
+            {isInvalidSearch ? <div>No results found.</div>: <PhotoBoard list={list}/>}
         </div>
     </div>
   );   
