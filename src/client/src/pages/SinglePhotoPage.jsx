@@ -24,7 +24,7 @@ const SinglePhotoPage = () => {
       return (
         <div id="single-photo-page">
             <div className="spp-content-wrapper">
-            <img loading="lazy" src={photo.urls.full} alt={photo.alt_description} className="full-photo" />
+            <img src={photo.urls.full} alt={photo.alt_description} className="full-photo" />
                 <div className="spp-btn-area">
                 <Btn type="back" />
                 <Btn type="download" info={{src: photo.urls.full, alt: photo.alt_description}} />

@@ -4,14 +4,11 @@ import SearchBar from "../components/SearchBar";
 import SavedSearches from "../components/SavedSearches";
 import Btn from "../components/Btn";
 
-// controlled input with searchbar and query?
-
 function Homepage() {
   let [isLoaded, setIsLoaded] = useState(false);
   let [list, setList] = useState([]);
   let [isInvalidSearch, setIsInvalidSearch] = useState(false);
-  //choose random query to start with
-  let [query, setQuery] = useState(localStorage.getItem("query") || "nature");
+  let [query, setQuery] = useState(localStorage.getItem("query") || null);
   let [savedSearches, setSavedSearches] = useState(JSON.parse(localStorage.getItem("savedSearches")) || []);
   
    useEffect(() => {
@@ -48,16 +45,16 @@ function Homepage() {
   const createSavedSearch = () => {
 
     if (!isInvalidSearch) {
-        if (savedSearches.length >= 5) {
+        if (savedSearches.findIndex((searchTerm) => searchTerm.toLowerCase() === query.toLowerCase()) !== -1) {
         // show 3-second message that saved searches limit has been reached
-        warningMsg.textContent = "Limit of saved searches reached!";
+        warningMsg.textContent = "Search already saved!";
         warningMsg.classList.remove("hidden");
         setTimeout(() => {
             warningMsg.classList.add("hidden");
         }, 3000)
         // another warning message if saved search already exists
-        } else if (savedSearches.findIndex((searchTerm) => searchTerm.toLowerCase() === query.toLowerCase()) !== -1) {
-        warningMsg.textContent = "Search already saved!";
+        } else if (savedSearches.length >= 5) {
+          warningMsg.textContent = "Limit of saved searches reached!";
         warningMsg.classList.remove("hidden");
         setTimeout(() => {
             warningMsg.classList.add("hidden");
@@ -69,7 +66,6 @@ function Homepage() {
   }
 
     const removeSavedSearch = (e) => {
-
         let updatedSavedSearches = [];
         for (let search of savedSearches) {
             if (search !== e.target.getAttribute("data-value")) {

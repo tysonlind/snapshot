@@ -3,7 +3,7 @@ import { useState } from "react";
 function Photo({ src, alt }) {
     return (
         <>
-        <img loading="lazy" className="photo-square" src={src} alt={alt} />
+        <img className="photo-square" src={src} alt={alt} />
         </>
     )
 }
