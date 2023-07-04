@@ -100,10 +100,12 @@ function Homepage() {
             <div id="forkme">
                 <a href="https://github.com/mbasagoitia/snapshot"><img decoding="async" loading="lazy" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_white_ffffff.png?resize=149%2C149" className="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1" /></a>
             </div>
-            <h1 id="title">SnapShot</h1>
+            <header className="App-Header">
+              <h1 id="title">SnapShot</h1>
+            </header>
             <div className="searchbar-wrapper">
-            <SearchBar handleSearch={setSearchTerms}/>
-            <Btn type="saveSearch" handleNewSave={createSavedSearch} />
+              <SearchBar handleSearch={setSearchTerms}/>
+              <Btn type="saveSearch" handleNewSave={createSavedSearch} />
             </div>
             <SavedSearches savedSearchesList={savedSearches} handleSavedSearch={setQueryFromSavedSearch} removeSavedSearch={removeSavedSearch}/>
             {isInvalidSearch ? <div>No results found.</div>: <PhotoBoard list={list}/>}
@@ -111,7 +113,11 @@ function Homepage() {
     </div>
   );   
   } else {
-    return <p>Loading...</p>;
+    return (
+      <div className="loader-container">
+        <div className="loader"></div>
+    </div>
+    )
   }
 
 }

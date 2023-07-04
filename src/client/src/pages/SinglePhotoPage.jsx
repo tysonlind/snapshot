@@ -33,7 +33,11 @@ const SinglePhotoPage = () => {
         </div>
       );
     } else {
-      return <p>Loading...</p>;
+      return (
+      <div className="loader-container">
+        <div className="loader"></div>
+      </div>
+      )
     }
   };
 
