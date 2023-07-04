@@ -4,6 +4,8 @@ import SearchBar from "../components/SearchBar";
 import SavedSearches from "../components/SavedSearches";
 import Btn from "../components/Btn";
 
+const port = process.env.PORT;
+
 function Homepage() {
   let [isLoaded, setIsLoaded] = useState(false);
   let [list, setList] = useState([]);
@@ -75,7 +77,7 @@ function Homepage() {
         setSavedSearches([...updatedSavedSearches]);
     }
   useEffect(() => {
-    fetch("http://localhost:5000" + "?" + new URLSearchParams({
+    fetch(`http://localhost:${port}` + "?" + new URLSearchParams({
       query: query
     }))
       .then((res) => res.json())
