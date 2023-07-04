@@ -5,8 +5,7 @@
   "description": "Photo search project",
   "main": "src/server/server.js",
   "scripts": {
-    "build": "cd src/client && npm run build",
-    "start": "npm run build && node src/server/server.js",
+    "start": "node src/server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:client": "cd src/client && npm start",
     "dev:server": "cd src/server && npm start"
