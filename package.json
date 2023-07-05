@@ -1,7 +1,6 @@
 {
   "name": "snapshot-photo-search",
   "version": "1.0.0",
-  "type": "module",
   "description": "Photo search project",
   "main": "src/server/server.js",
   "scripts": {
