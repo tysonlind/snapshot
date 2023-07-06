@@ -30,15 +30,13 @@ app.use(morgan("dev"));
 
 app.use(express.static(join(__dirname, "../client/build")));
 
-/**
- * Directs all routes starting with /api to the top level api express router
- */
 app.use(router);
 
 /**
  * Sends the react app index.html for page requests
  * Only needed in production when you are not using the react dev server
  */
+
 app.use((req, res, next) => {
   try {
     res.sendFile(join(__dirname, "../client/build/index.html"));
