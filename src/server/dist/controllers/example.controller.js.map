@@ -1,0 +1,1 @@
+{"version":3,"file":"example.controller.js","names":["findAll"],"sources":["../../controllers/example.controller.js"],"sourcesContent":["import query from \"../db/utils\";\r\n\r\nexport const findAll = async () => {\r\n  return await query(\"SELECT * FROM table\");\r\n};\r\n"],"mappings":"8WAAA;;AAEO,IAAMA,OAAO,sHAAG;cACR,uBAAM,qBAAN,CADQ,iHAAH,mBAAPA,OAAO,4CAAb,C"}
