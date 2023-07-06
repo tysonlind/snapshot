@@ -14,7 +14,6 @@ router.get("/", function (req, res, next) {
 
 router.get("/:id", function (req, res, next) {
   var id = req.params.id;
-  alert(id);
   (0, _isomorphicFetch["default"])("https://api.unsplash.com/photos/".concat(id, "?client_id=").concat(process.env.API_KEY)).
   then(function (res) {return res.json();}).
   then(function (data) {return res.send(data);});
