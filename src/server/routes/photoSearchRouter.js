@@ -14,7 +14,6 @@ router.get("/", (req, res, next) => {
 
 router.get("/:id", (req, res, next) => {
     let { id } = req.params;
-    alert(id);
     fetch(`https://api.unsplash.com/photos/${id}?client_id=${process.env.API_KEY}`)
     .then((res) => res.json())
     .then((data) => res.send(data));
