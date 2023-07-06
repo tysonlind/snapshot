@@ -10,20 +10,20 @@ function Homepage() {
   let [isLoaded, setIsLoaded] = useState(false);
   let [list, setList] = useState([]);
   let [isInvalidSearch, setIsInvalidSearch] = useState(false);
-  let [query, setQuery] = useState(localStorage.getItem("query") || null);
-  let [savedSearches, setSavedSearches] = useState(JSON.parse(localStorage.getItem("savedSearches")) || []);
+  let [query, setQuery] = useState(sessionStorage.getItem("query") || null);
+  let [savedSearches, setSavedSearches] = useState(JSON.parse(sessionStorage.getItem("savedSearches")) || []);
   
    useEffect(() => {
-    localStorage.setItem('query', query);
-    localStorage.setItem('savedSearches', JSON.stringify(savedSearches));
+    sessionStorage.setItem('query', query);
+    sessionStorage.setItem('savedSearches', JSON.stringify(savedSearches));
   }, [query, savedSearches]);
   
   useEffect(() => {
-    const currentQuery = localStorage.getItem('query');
+    const currentQuery = sessionStorage.getItem('query');
     if (currentQuery) {
         setQuery(currentQuery);
     } else {
-        const currentSavedSearches = localStorage.getItem('savedSearches');
+        const currentSavedSearches = sessionStorage.getItem('savedSearches');
         setSavedSearches(currentSavedSearches);
     }
   }, []);

@@ -27,7 +27,7 @@ app.use((0, _morgan["default"])("dev"));
 /**
  * Directs incoming static asset requests to the public folder
  */
-app.use(_express["default"]["static"]((0, _path.join)(__dirname, "../client/build")));
+//app.use(express.static(join(__dirname, "../client/build")));
 
 /**
  * Directs all routes starting with /api to the top level api express router
