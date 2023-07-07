@@ -77,9 +77,7 @@ function Homepage() {
         setSavedSearches([...updatedSavedSearches]);
     }
   useEffect(() => {
-    fetch(`http://localhost:${port}` + "?" + new URLSearchParams({
-      query: query
-    }))
+    fetch(`https://snapshot-photo-search-d3bc5642cb86.herokuapp.com/`)
       .then((res) => res.json())
       .then((data) => {
         if (data.length > 0) {
