@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 function Photo({ src, alt }) {
     return (
         <>

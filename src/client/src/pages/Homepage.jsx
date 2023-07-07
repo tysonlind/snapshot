@@ -4,7 +4,7 @@ import SearchBar from "../components/SearchBar";
 import SavedSearches from "../components/SavedSearches";
 import Btn from "../components/Btn";
 
-const port = process.env.REACT_APP_PORT;
+//const port = process.env.REACT_APP_SERVER_PORT;
 
 function Homepage() {
   let [isLoaded, setIsLoaded] = useState(false);
