@@ -7,7 +7,7 @@ function PhotoBoard({ list }) {
     <>
     <ul id="photo-board">
         {list.map((item) => {
-        return <li key={item.id}><Link to={`/${item.id}`}><Photo src={item.urls.full} alt={item.alt_description} /></Link></li>
+        return <li key={item.id}><Link to={`/${item.id}`}><Photo src={item.urls.small} alt={item.alt_description} /></Link></li>
         })}
     </ul>
     </>

@@ -76,8 +76,9 @@ function Homepage() {
         }
         setSavedSearches([...updatedSavedSearches]);
     }
+    //https://snapshot-photo-search-d3bc5642cb86.herokuapp.com/
   useEffect(() => {
-    fetch(`https://snapshot-photo-search-d3bc5642cb86.herokuapp.com/`+ "?" + new URLSearchParams({
+    fetch(`http://localhost:5000/`+ "?" + new URLSearchParams({
       query: query
     }))
       .then((res) => res.json())
