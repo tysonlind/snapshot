@@ -16,19 +16,18 @@ app.use(cors());
 app.use(morgan("dev"));
 
 // Static Middleware
-app.use(express.static(
-path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, '../client/build')))
 //app.use(express.static(join(__dirname, "../client/build")));
 
 app.use(router);
 
-app.use((req, res, next) => {
+/* app.use((req, res, next) => {
   try {
     res.sendFile(join(__dirname, "../client/build/index.html"));
   } catch (error) {
     next(error);
   }
-});
+}); */
 
 app.use(errorHandler);
 
