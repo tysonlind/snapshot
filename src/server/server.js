@@ -7,6 +7,8 @@ import config from "./config";
 import { errorHandler } from "./middlewares/errorHandler";
 import { join } from "path";
 
+process.env.PWD = process.cwd();
+
 const app = express();
 
 app.use(express.json());
