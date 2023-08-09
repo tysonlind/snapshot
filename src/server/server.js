@@ -33,6 +33,6 @@ app.use(router);
 
 app.use(errorHandler);
 
-app.listen(config.port || 8080, () =>
+app.listen(process.env.PORT || 8080, () =>
   console.log(`Server listening on port ${config.port}...`)
 );
