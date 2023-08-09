@@ -16,15 +16,7 @@ app.use(cors());
 app.use(morgan("dev"));
 
 // Static Middleware
-<<<<<<< HEAD
 app.use(express.static(path.join(__dirname, '../client/build')))
-=======
-
-app.use(express.static(path.join(__dirname, '../client/build')));
-
-// app.use(express.static(
-// path.join(__dirname, 'public')))
->>>>>>> 5027fb29776ba5414a51f5808ab677e3f5a8a9fa
 //app.use(express.static(join(__dirname, "../client/build")));
 
 app.use(router);
