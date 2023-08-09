@@ -6,6 +6,7 @@ import router from "./routes";
 import config from "./config";
 import { errorHandler } from "./middlewares/errorHandler";
 import { join } from "path";
+import dotenv from 'dotenv';
 
 process.env.PWD = process.cwd();
 
@@ -18,7 +19,7 @@ app.use(cors());
 app.use(morgan("dev"));
 
 // Static Middleware
-app.use(express.static(path.join(process.env.PWD + '../client/build')))
+app.use(express.static(path.join(process.env.PWD, '../client/build')))
 //app.use(express.static(join(__dirname, "../client/build")));
 
 app.use(router);
@@ -33,6 +34,6 @@ app.use(router);
 
 app.use(errorHandler);
 
-app.listen(process.env.PORT || 3000, () =>
-  console.log(`Server listening on port ${config.port}...`)
+app.listen(parseInt(process.env.PORT) || 3000, () =>
+  console.log(`Server listening on port ${parseInt(process.env.PORT)}...`)
 );
